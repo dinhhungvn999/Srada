@@ -362,11 +362,43 @@
   }
  },
  "cal": {
-  "at": 1791676843615,
+  "at": 1791763239698,
   "items": [
    {
-    "t": 1791396000000,
-    "title": "FOMC Meeting Minutes"
+    "t": 1791981000000,
+    "title": "Core CPI m/m"
+   },
+   {
+    "t": 1791981000000,
+    "title": "Core CPI y/y"
+   },
+   {
+    "t": 1791981000000,
+    "title": "CPI m/m"
+   },
+   {
+    "t": 1791981000000,
+    "title": "CPI y/y"
+   },
+   {
+    "t": 1792067400000,
+    "title": "Core PPI m/m"
+   },
+   {
+    "t": 1792067400000,
+    "title": "Core Retail Sales m/m"
+   },
+   {
+    "t": 1792067400000,
+    "title": "PPI m/m"
+   },
+   {
+    "t": 1792067400000,
+    "title": "Retail Sales m/m"
+   },
+   {
+    "t": 1792121400000,
+    "title": "Fed Chairman Warsh Speaks"
    }
   ]
  },
@@ -421,12 +453,12 @@
   "balance": 1052.37
  },
  "last": {
-  "t": 1791680400,
-  "price": 4183.8,
-  "st4": 0
+  "t": 1791759600,
+  "price": 4191.6,
+  "st4": -1
  },
- "aliveDay": "2026-10-11",
- "updatedAt": 1791684038924,
+ "aliveDay": "2026-10-12",
+ "updatedAt": 1791763239712,
  "skippedIds": [
   "day_1790633700_-1"
  ]
