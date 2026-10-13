@@ -420,11 +420,13 @@
    "lot": 0.02,
    "partial": 0.01,
    "skipped": false,
-   "status": "open",
-   "slNow": 4164.73,
+   "status": "tp1",
+   "slNow": 4164.36,
    "rulesV": 2,
    "beMoved": true,
-   "beAt": 1791850500000
+   "beAt": 1791850500000,
+   "tp1Hit": true,
+   "tp1At": 1791853200000
   }
  ],
  "startedAt": 1790486714423,
@@ -546,11 +548,11 @@
  },
  "last": {
   "t": 1791846000,
-  "price": 4163.5,
+  "price": 4158.9,
   "st4": -1
  },
  "aliveDay": "2026-10-13",
- "updatedAt": 1791850527342,
+ "updatedAt": 1791852925052,
  "skippedIds": [
   "day_1790633700_-1",
   "day_1791824400_-1"
