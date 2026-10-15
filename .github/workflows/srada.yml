@@ -1,0 +1,54 @@
+# SRADA chạy 24/7: mỗi 15 phút GitHub tự chạy bộ máy, lưu nhật ký và gửi Telegram
+# Đặt tệp này ở: .github/workflows/srada.yml
+name: Srada 24-7
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'   # mỗi 15 phút (giờ UTC). GitHub đôi khi chạy trễ — cron-job.org gọi bù.
+  workflow_dispatch:          # nút "Run workflow" để chạy thử bằng tay
+
+permissions:
+  contents: write            # cho phép lưu file data/srada.json
+
+concurrency:
+  group: srada
+  cancel-in-progress: false
+
+jobs:
+  srada:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      - name: Chạy Srada
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          MODES: 'week,day'
+          ACCOUNT: '10000'        # tài khoản thi quỹ 10.000$
+          RISK_DAY_PCT: '0.75'    # rủi ro mỗi lệnh NGÀY (% tài khoản)
+          RISK_WEEK_PCT: '0.75'   # rủi ro mỗi lệnh TUẦN (% tài khoản)
+          MAX_OPEN_RISK_PCT: '1.5' # tổng rủi ro các lệnh đang mở (≥ TUẦN + NGÀY)
+          DAY_GUARD_PCT: '3.5'    # tự dừng trong ngày (luật quỹ 5%)
+          MAX_GUARD_PCT: '8'      # dừng hẳn (luật quỹ 10%)
+          BE_DAY: '5'             # NGÀY: lãi 5 giá → SL về điểm vào, rồi SL luôn cách giá tốt nhất 5 giá
+          TRAIL_DAY: '5'
+          BE_WEEK: '10'           # TUẦN: lãi 10 giá → SL về điểm vào, rồi SL luôn cách giá tốt nhất 10 giá
+          TRAIL_WEEK: '10'
+          STEP_USD: '1'           # SL nhảy từng 1 giá
+          TP1_R: '0'              # 0 = không chốt một phần (kiểm chứng cho kết quả tốt hơn)
+          TP2_R: '0'              # 0 = không đặt TP cố định
+        run: node srada-engine.mjs
+      - name: Lưu nhật ký
+        run: |
+          git config user.name "srada-bot"
+          git config user.email "srada-bot@users.noreply.github.com"
+          git add data/srada.json
+          if git diff --staged --quiet; then echo "Không có thay đổi"; else
+            git commit -m "Srada: cập nhật nhật ký $(date -u +'%Y-%m-%d %H:%M')"
+            git pull --rebase --autostash || true
+            git push
+          fi
