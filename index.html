@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0f0d0a">
-<title>Radar Vàng</title>
+<title>Srada</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
@@ -175,7 +175,7 @@ footer{color:var(--muted);font-size:12px;margin-top:18px;line-height:1.6}
 <body>
 <div class="wrap">
 <header>
-  <div class="brand"><div class="logo">Au</div><div><h1>Radar Vàng</h1><small>XAU/USD · Mô hình xu hướng H1 + H4 · Lịch kinh tế Mỹ · Dòng tiền</small></div></div>
+  <div class="brand"><div class="logo">S</div><div><h1>Srada</h1><small>XAU/USD · Thi quỹ FTMO 10.000$ · Tín hiệu NGÀY + TUẦN · SL bậc thang</small></div></div>
   <div class="status">
     <span class="pill" id="mkt"><span class="dot" style="background:var(--wait)"></span>Đang tải…</span>
     <span class="pill" id="sess">Phiên: —</span>
@@ -209,8 +209,8 @@ footer{color:var(--muted);font-size:12px;margin-top:18px;line-height:1.6}
       <div class="levels">
         <div class="lv en"><span>Vào lệnh</span><b id="lvEn">—</b></div>
         <div class="lv sl"><span id="lvSlLbl">Cắt lỗ (1,5×ATR H1)</span><b id="lvSl">—</b></div>
-        <div class="lv tp"><span>Chốt lời 1 (1R)</span><b id="lvTp1">—</b></div>
-        <div class="lv tp"><span>Chốt lời 2 (2R)</span><b id="lvTp2">—</b></div>
+        <div class="lv tp"><span id="lvTp1Lbl">SL về điểm vào khi giá tới</span><b id="lvTp1">—</b></div>
+        <div class="lv tp"><span id="lvTp2Lbl">SL khoá +5 giá khi giá tới</span><b id="lvTp2">—</b></div>
       </div>
       <div class="warnbox" id="lotBox">Khối lượng gợi ý: —</div>
       <ul class="reasons" id="reasons"></ul>
@@ -225,7 +225,7 @@ footer{color:var(--muted);font-size:12px;margin-top:18px;line-height:1.6}
       <h2>Kết quả theo ngày <span class="r" id="daysNote">—</span></h2>
       <div class="flow" id="daysSum" style="grid-template-columns:repeat(3,1fr);margin-bottom:10px"></div>
       <div style="max-height:340px;overflow:auto"><table class="days" id="daysTbl"></table></div>
-      <div class="skel" style="font-size:11.5px;margin-top:6px">Tính lại tự động mỗi 5 phút theo đúng quy tắc của chế độ đang chọn. ✓ chạm chốt lời 2R · ✗ chạm cắt lỗ · ⏳ đang chạy · ⌛ hết 24 giờ, đóng theo giá.</div>
+      <div class="skel" style="font-size:11.5px;margin-top:6px">Tính lại tự động mỗi 5 phút theo đúng quy tắc Srada (SL bậc thang, không TP cố định). 🔒 chốt lãi bằng SL bậc thang · 🤝 hoà vốn · ✗ chạm cắt lỗ · ⏳ đang chạy · ⌛ hết 24 giờ, đóng theo giá.</div>
     </div>
 
     <div class="card">
@@ -248,11 +248,9 @@ footer{color:var(--muted);font-size:12px;margin-top:18px;line-height:1.6}
     <div class="card">
       <h2>Quản lý vốn &amp; thông báo</h2>
       <div class="set">
-        <div><label>Vốn tài khoản (USD)</label><input type="number" id="inBal" min="10" step="10"></div>
-        <div><label>Khối lượng vào lệnh (lot)</label><input type="number" id="inLot" min="0.01" step="0.01"></div>
-        <div><label>Chốt ở TP1 (lot)</label><input type="number" id="inPart" min="0" step="0.01"></div>
-        <div><label>Bỏ qua nếu rủi ro lớn hơn ($)</label><input type="number" id="inMax" min="5" step="5"></div>
-        <div style="grid-column:1/-1"><label>Link nhật ký 24/7 (để trống nếu trang đang chạy trên GitHub Pages)</label><input type="text" id="inLog" placeholder="https://raw.githubusercontent.com/<tên>/radar-vang/main/data/signals.json" style="font-size:12px"></div>
+        <div><label>Vốn tài khoản thi (USD)</label><input type="number" id="inBal" min="100" step="100"></div>
+        <div><label>Rủi ro mỗi lệnh (% vốn)</label><input type="number" id="inRisk" min="0.1" max="3" step="0.05"></div>
+        <div style="grid-column:1/-1"><label>Link nhật ký 24/7 (để trống nếu trang đang chạy trên GitHub Pages)</label><input type="text" id="inLog" placeholder="https://raw.githubusercontent.com/dinhhungvn999/Srada/main/data/srada.json" style="font-size:12px"></div>
       </div>
       <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
         <button class="btn" id="btnNotify">🔔 Bật thông báo khi có tín hiệu</button>
@@ -330,7 +328,7 @@ footer{color:var(--muted);font-size:12px;margin-top:18px;line-height:1.6}
 </div>
 
 <footer>
-  ⚠️ Radar Vàng là công cụ hỗ trợ quyết định, không phải lời khuyên đầu tư. Kết quả kiểm chứng quá khứ không bảo đảm lợi nhuận tương lai; giai đoạn 2022–2026 vàng tăng mạnh nên lệnh mua được lợi hơn lệnh bán. Luôn đặt cắt lỗ, không rủi ro quá 1–2% vốn mỗi lệnh, và nên chạy tài khoản demo trước.
+  ⚠️ Srada là công cụ hỗ trợ quyết định, không phải lời khuyên đầu tư. Kết quả kiểm chứng quá khứ không bảo đảm lợi nhuận tương lai; giai đoạn 2022–2026 vàng tăng mạnh nên lệnh mua được lợi hơn lệnh bán. Luôn đặt cắt lỗ, không rủi ro quá 1–2% vốn mỗi lệnh, và nên chạy tài khoản demo trước.
   Giá nến lấy từ PAXG (token vàng bám sát XAU, đã điều chỉnh chênh lệch); khối lượng/dòng tiền từ sàn PAXG chỉ mang tính tham khảo. Báo cáo COT công bố thứ Sáu, số liệu tính đến thứ Ba.
   <br>Nguồn: gold-api.com · Coinbase · Kraken · Forex Factory · CFTC · Google News · ExchangeRate-API.
 </footer>
@@ -341,13 +339,13 @@ footer{color:var(--muted);font-size:12px;margin-top:18px;line-height:1.6}
 // Hai chế độ đã kiểm chứng 4,5 năm: TUẦN = MACD H1 + EMA200 H1 + xu hướng H4 (SL 1,5×ATR); NGÀY = MACD H1 + EMA200 H1 (SL 2×ATR)
 const MODES={week:{name:'TUẦN',title:'Tín hiệu mô hình H1 + H4',slm:1.5,h4:true,type:'macd',bt:'final',freq:'trung bình 1–2 lệnh mỗi tuần'},
              day:{name:'NGÀY',title:'Tín hiệu RSI(2) M15 theo xu hướng H4',slm:1,h4:true,type:'rsi2',bt:'daily',freq:'khoảng 1 lệnh mỗi ngày (44% số ngày không có lệnh, có ngày 2–3 lệnh)'}};
-const CFG={BE_USD:5, TRAIL_USD:10, SL_ATR:1.5, RR:2, SPREAD:0.35, OZ_PER_LOT:100, OZ_PER_LUONG:37.5/31.1035, FRESH_BARS:3,
+const CFG={BE:{day:5,week:10}, TRAIL:{day:5,week:10}, STEP:1, SL_ATR:1.5, RR:2, SPREAD:0.35, OZ_PER_LOT:100, OZ_PER_LUONG:37.5/31.1035, FRESH_BARS:3,
   LOCK_BEFORE:30, LOCK_AFTER:15, PRICE_MS:60e3, CANDLE_MS:5*60e3, NEWS_MS:15*60e3};
 const BT_RESULTS={"tab": {"Ngẫu nhiên (đối chứng)": {"M15": [967, 36.1, 0.87, -0.088, "2/5"], "H1": [255, 34.5, 0.83, -0.107, "3/5"], "H4": [72, 37.5, 0.73, -0.154, "1/5"]}, "Bollinger đảo chiều": {"M15": [5412, 35.3, 0.86, -0.098, "0/5"], "H1": [1551, 33.8, 0.8, -0.133, "0/5"], "H4": [491, 39.1, 0.78, -0.122, "2/5"]}, "RSI 30/70 đảo chiều": {"M15": [2462, 34.4, 0.83, -0.117, "0/5"], "H1": [779, 34, 0.82, -0.121, "1/5"], "H4": [244, 39.8, 0.83, -0.092, "2/5"]}, "RSI pullback trong xu hướng": {"M15": [1601, 33.8, 0.8, -0.139, "0/5"], "H1": [466, 37.1, 0.89, -0.069, "2/5"], "H4": [125, 47.2, 1.02, 0.011, "3/5"]}, "Ichimoku TK + mây": {"M15": [2370, 33.6, 0.8, -0.14, "1/5"], "H1": [593, 37.8, 1.01, 0.007, "2/5"], "H4": [153, 44.4, 1.59, 0.258, "4/5"]}, "Stochastic 20/80": {"M15": [6188, 34, 0.8, -0.143, "0/5"], "H1": [1624, 35.3, 0.88, -0.079, "0/5"], "H4": [481, 38.3, 0.83, -0.096, "2/5"]}, "Donchian 20 phá vỡ": {"M15": [4342, 32.6, 0.8, -0.144, "2/5"], "H1": [1218, 36.6, 1, -0.002, "2/5"], "H4": [395, 43.8, 1.18, 0.09, "4/5"]}, "ADX>25 + DI cắt": {"M15": [1473, 33.2, 0.78, -0.156, "0/5"], "H1": [394, 33.8, 0.78, -0.143, "0/5"], "H4": [134, 34.3, 0.8, -0.117, "2/5"]}, "Parabolic SAR": {"M15": [4992, 33, 0.78, -0.158, "0/5"], "H1": [1402, 37.6, 0.97, -0.018, "3/5"], "H4": [456, 38.8, 0.95, -0.026, "3/5"]}, "MACD cắt Signal": {"M15": [5366, 33.3, 0.78, -0.16, "1/5"], "H1": [1384, 37.4, 0.96, -0.028, "2/5"], "H4": [420, 44, 1.15, 0.077, "4/5"]}, "EMA 20/50 cắt nhau": {"M15": [1970, 32, 0.75, -0.183, "0/5"], "H1": [536, 37.1, 0.95, -0.033, "2/5"], "H4": [110, 37.3, 0.89, -0.059, "2/5"]}, "Bollinger phá vỡ": {"M15": [4666, 31.4, 0.75, -0.184, "1/5"], "H1": [1309, 36.2, 0.96, -0.026, "2/5"], "H4": [419, 43.9, 1.24, 0.121, "4/5"]}, "EMA 50/200 (golden cross)": {"M15": [702, 31.2, 0.74, -0.186, "0/5"], "H1": [129, 40.3, 1.1, 0.061, "2/5"], "H4": [47, 36.2, 0.67, -0.187, "2/5"]}, "RSI 50 + lọc EMA200": {"M15": [4038, 32, 0.74, -0.186, "1/5"], "H1": [994, 38.6, 0.97, -0.016, "2/5"], "H4": [300, 45.3, 1.27, 0.126, "5/5"]}, "MACD + lọc EMA200": {"M15": [3651, 31.8, 0.74, -0.188, "2/5"], "H1": [918, 40.3, 1.1, 0.062, "4/5"], "H4": [283, 45.9, 1.24, 0.116, "3/5"]}, "VWAP ngày + lọc EMA200": {"M15": [3723, 31.9, 0.74, -0.19, "0/5"], "H1": [1474, 37.6, 0.98, -0.012, "2/5"], "H4": [645, 42.3, 1.1, 0.05, "3/5"]}, "EMA 9/21 cắt nhau": {"M15": [3530, 31.3, 0.72, -0.203, "0/5"], "H1": [902, 35.7, 0.89, -0.067, "1/5"], "H4": [255, 42.7, 1.14, 0.068, "4/5"]}, "Supertrend (10,3)": {"M15": [2924, 30.4, 0.71, -0.221, "0/5"], "H1": [706, 36.3, 0.92, -0.05, "2/5"], "H4": [199, 40.2, 1.01, 0.003, "1/5"]}}, "final": {"n": 322, "win": 42.9, "pf": 1.24, "exp": 0.141, "tot": 45.3, "dd": 14.5, "yrs": {"2022": 4.5, "2023": 13.6, "2024": 6.5, "2025": 9.7, "2026": 11.1}, "posYrs": "5/5"}, "oos": {"n": 122, "win": 41.8, "pf": 1.29, "exp": 0.17, "tot": 20.7, "dd": 10.6}, "is": {"n": 200, "win": 43.5, "pf": 1.21, "exp": 0.123, "tot": 24.6, "dd": 14.5}, "eq": [[1651039200, 1.95], [1654077600, -0.36], [1656000000, -2.63], [1657270800, -3.59], [1659070800, -7.48], [1660723200, -8.55], [1663185600, -3.89], [1666677600, -3.22], [1668535200, 0.15], [1671638400, 3.69], [1673575200, 7.31], [1677229200, 8.1], [1679587200, 11.19], [1681322400, 8.84], [1683241200, 9.58], [1684386000, 10.32], [1685930400, 9.18], [1687323600, 6.34], [1690250400, 10.04], [1691690400, 12.13], [1695067200, 14], [1696384800, 15.84], [1699524000, 16.57], [1701180000, 17.3], [1703779200, 18.06], [1705471200, 15.81], [1707314400, 13.45], [1709211600, 9.7], [1710892800, 10.53], [1712167200, 14.35], [1715151600, 11.9], [1717689600, 12.75], [1719406800, 10.46], [1722567600, 11.26], [1724659200, 7.78], [1725962400, 8.53], [1728039600, 12.32], [1730242800, 21.1], [1732287600, 24.94], [1733936400, 25.77], [1735862400, 23.54], [1737424800, 28.38], [1739235600, 29.18], [1741064400, 29.99], [1743472800, 33.82], [1747875600, 34.73], [1749607200, 29.59], [1751522400, 30.46], [1754305200, 28.26], [1756767600, 32.08], [1758618000, 32.95], [1760011200, 32.03], [1762261200, 35.96], [1765393200, 34.32], [1768312800, 32.23], [1769986800, 39.17], [1771480800, 34.12], [1773054000, 32.07], [1776297600, 36.6], [1778137200, 35.8], [1780412400, 36.72], [1783450800, 46.65], [1786078800, 47.56], [1789520400, 45.47], [1790236800, 46.36], [1790258400, 45.35]], "daily": {"n": 1172, "win": 40, "pf": 1.17, "exp": 0.109, "tot": 127.2, "dd": 19.7, "yrs": {"2022": 0, "2023": 1, "2024": 30, "2025": 59, "2026": 37}, "posYrs": "5/5", "oos": {"exp": 0.183}, "dist": [44.3, 28, 18.3, 9.3], "posDays": 44, "moPos": 61.1, "worstDay": -3.37, "bestDay": 9.9, "eq": [[1650442500, -1.12], [1652097600, -0.8], [1654016400, -5.18], [1655132400, -1.59], [1657046700, -8.83], [1658898900, -8.02], [1660578300, -8.26], [1662959700, -5.59], [1664859600, -5.08], [1666747800, -9.8], [1668066300, -6.94], [1669950000, -0.08], [1672104600, -1.12], [1673548200, 0.16], [1676628000, 1.97], [1680081300, 8.61], [1681440300, 10.3], [1683131400, -0.26], [1684379700, 1.49], [1687158900, 1.66], [1689183000, -2.84], [1691602200, 1.89], [1694632500, 3.52], [1695838500, 6.32], [1698297300, 2.08], [1700249400, 5.05], [1702422000, 2.53], [1703783700, 1.48], [1705911300, -2.71], [1707462000, -3.08], [1709677800, -0.45], [1711398600, 7.72], [1712660400, 3.88], [1715161500, 1.54], [1716256800, 11.29], [1717702200, 11.8], [1720629000, 10.62], [1722231900, 12.8], [1723559400, 17.92], [1726171200, 22.86], [1729054800, 28.85], [1731412800, 35.64], [1733766300, 37.97], [1735600500, 31.05], [1737077400, 29.87], [1738752300, 34.96], [1739967300, 37.06], [1741730400, 30.38], [1743409800, 41.66], [1744810200, 53.28], [1746415800, 55.13], [1747885500, 60.68], [1749544200, 55.13], [1751528700, 57.41], [1753084800, 58.31], [1754599500, 54.46], [1756385100, 54.59], [1758540600, 55.53], [1759750200, 66.97], [1760605200, 81.59], [1762288200, 73.19], [1763452800, 75.77], [1765478700, 84.31], [1767357000, 90.74], [1768922100, 93.31], [1770021000, 102.12], [1771573500, 94.98], [1773359100, 94.08], [1775610900, 90.89], [1776877200, 87.55], [1778546700, 88.05], [1779963300, 99.72], [1781098200, 111.33], [1782747900, 115.41], [1783928700, 117.93], [1785431700, 114.51], [1787186700, 114.05], [1788909300, 119.68], [1790248500, 128.26], [1790265600, 127.24]]}, "sim": {"prof": {"0": 1.01, "1": 1.15, "2": 0.94, "3": 1.01, "4": 1.0, "5": 0.99, "6": 0.9, "7": 0.88, "8": 0.91, "9": 0.79, "10": 0.84, "11": 0.91, "12": 1.24, "13": 1.28, "14": 1.33, "15": 1.29, "16": 0.98, "17": 0.89, "18": 0.78, "19": 0.83, "20": 0.81, "21": 0.85, "22": 0.85, "23": 1.01}, "evMult": {"fomc": 3.97, "press": 2.49, "nfp": 1.77}, "cov50": 54.0, "cov90": 89.6, "nCal": 4213}};
 const $=id=>document.getElementById(id);
-const store={get(k,d){try{const v=localStorage.getItem('rv2_'+k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem('rv2_'+k,JSON.stringify(v))}catch(e){}}};
+const store={get(k,d){try{const v=localStorage.getItem('sr1_'+k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem('sr1_'+k,JSON.stringify(v))}catch(e){}}};
 const S={spot:null,usdvnd:null,h1:[],m15:[],usd:[],news:[],newsBias:0,geoRisk:50,cal:[],calSrc:'',cot:null,tf:3600,mode:store.get('mode','week'),
-  settings:Object.assign({bal:1000,lot:0.02,part:0.01,maxRisk:80,logUrl:''},store.get('settings',{})),log:store.get('log',[]),notify:store.get('notify',false)};
+  settings:Object.assign({bal:10000,risk:0.75,logUrl:''},store.get('settings',{})),log:store.get('log',[]),notify:store.get('notify',false)};
 
 // ============ TIỆN ÍCH ============
 const fmt=(n,d=2)=>n==null||isNaN(n)?'—':(+n).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
@@ -533,6 +531,17 @@ function model(mode){
   if(!MD.h4)checks.push({ok:st4===want,info:true,txt:st4===want?'Bổ sung: xu hướng H4 cùng chiều — lệnh chất lượng hơn':st4===0?'Bổ sung: H4 chưa rõ xu hướng':'Bổ sung: H4 ngược chiều — nên giảm khối lượng'});
   return {mode,dir,st4,up1,want,checks,atr:A[n],atrAvg:A.slice(-48).reduce((a,b)=>a+b,0)/48,t:H[n].t,close:c[n],crossAt:crossAt>=0?H[crossAt].t:null,crossClose:crossAt>=0?c[crossAt]:null,rsi:rsi(c)[n],e50:e50[n],e200:e200[n],H,H4};
 }
+// SRADA: thoát lệnh bằng SL bậc thang trên nến M15 (lãi BE giá → SL về điểm vào, sau đó SL luôn cách giá tốt nhất TRAIL giá, bước 1 giá; tối đa 24 giờ)
+function ladderExit(M,k0,x,en,r,mode){
+  let s2=en-x*r,best=en;const be=CFG.BE[mode],trl=CFG.TRAIL[mode];const kEnd=Math.min(M.length,k0+96);
+  for(let k=k0;k<kEnd;k++){const pth=M[k].c>=M[k].o?[M[k].o,M[k].l,M[k].h,M[k].c]:[M[k].o,M[k].h,M[k].l,M[k].c];
+    for(let q=1;q<4;q++){const a=pth[q-1],b=pth[q];if(a===b)continue;
+      if((b-a)*x<0){if((b-s2)*x<=0){const px=(a-s2)*x<=0?a:s2,g=(px-en)*x;return {R:g/r,ex:k,st:g<-0.01?'sl':g>0.5?'trail':'be'}}}
+      else{best=x>0?Math.max(best,b):Math.min(best,b);const gain=(best-en)*x;
+        if(gain>=be){const lock=Math.max(0,Math.floor((gain-trl)/CFG.STEP+1e-9)*CFG.STEP),w=en+x*lock;if((w-s2)*x>0)s2=w}}}}
+  if(k0+96<=M.length){const ex=k0+95;return {R:(M[ex].c-en)*x/r,ex,st:'time'}}
+  const ex=M.length-1;return {R:(M[ex].c-en)*x/r,ex,st:'open'};
+}
 // Chạy lại quy tắc của chế độ trên dữ liệu đang tải (~3 tháng H1) → danh sách lệnh + trạng thái
 function modeTrades(H,mode){
   if(MODES[mode].type==='rsi2')return dayTrades(H);
@@ -545,11 +554,10 @@ function modeTrades(H,mode){
     if((c[i]>e200[i]?1:-1)!==x)continue;
     if(MD.h4){const jb=Math.floor((H[i].t+3600)/14400)*14400-14400;const j=i4.get(jb);if(j==null)continue;
       const st=(c4[j]>e4[j]&&M4.m[j]>M4.s[j])?1:(c4[j]<e4[j]&&M4.m[j]<M4.s[j])?-1:0;if(st!==x)continue}
-    const en=c[i],r=A[i]*MD.slm,sl=en-x*r,tp=en+x*r*CFG.RR;let R=null,ex=null,st='open';
-    for(let k=i+1;k<Math.min(H.length,i+25);k++){if(x>0?H[k].l<=sl:H[k].h>=sl){R=-1;ex=k;st='sl';break}if(x>0?H[k].h>=tp:H[k].l<=tp){R=CFG.RR;ex=k;st='tp';break}}
-    if(R===null){if(i+24<=H.length-1){ex=i+24;R=(c[ex]-en)*x/r;st='time'}else{ex=H.length-1;R=(c[ex]-en)*x/r;st='open'}}
-    if(st!=='open')R-=CFG.SPREAD/r;
-    tr.push({t:H[i].t+3600,d:x,en,sl,tp,R,st,exT:H[ex].t+3600});busy=ex;
+    const en=c[i],r=A[i]*MD.slm,sl=en-x*r,tp=en+x*CFG.BE.week;
+    const M=closedOnly(S.m15,900),eT=H[i].t+3600;let k0=0;while(k0<M.length&&M[k0].t<eT)k0++;if(k0>=M.length||M[k0].t-eT>7200)continue;
+    const o=ladderExit(M,k0,x,en,r,'week');let R=o.R;if(o.st!=='open'&&o.st!=='be')R-=CFG.SPREAD/r;
+    const exT=M[o.ex].t+900;tr.push({t:eT,d:x,en,sl,tp,R,st:o.st,exT});while(busy<H.length-1&&H[busy+1].t+3600<=exT)busy++;
   }
   return tr;
 }
@@ -576,15 +584,9 @@ function dayTrades(H){
   const X=h4Ctx(H),M=closedOnly(S.m15,900),c=M.map(k=>k.c),r2=rsiN(c,2),e50=ema(c,50),tr=[];let busy=-1;
   const open=t=>{const d=new Date(t*1000);const w=d.getUTCDay(),h=d.getUTCHours();return !((w===5&&h>=21)||w===6||(w===0&&h<23))&&h!==21};
   for(let i=60;i<M.length;i++){if(i<=busy||!open(M[i].t))continue;const s4=X.stAt(M[i].t);const x=s4>0&&r2[i]<15&&c[i]>e50[i]?1:s4<0&&r2[i]>85&&c[i]<e50[i]?-1:0;if(!x)continue;
-    const r=X.atrAt(M[i].t);if(!(r>0.3))continue;const en=c[i],sl=en-x*r,tp=en+x*r*CFG.RR;let R=null,ex=null,st='open';
-    let s2=sl,best=en,mv=false;
-    for(let k=i+1;k<Math.min(M.length,i+97)&&R===null;k++){const pth=M[k].c>=M[k].o?[M[k].o,M[k].l,M[k].h,M[k].c]:[M[k].o,M[k].h,M[k].l,M[k].c];
-      for(let q=1;q<4;q++){const a=pth[q-1],b=pth[q];if(a===b)continue;
-        if((b-a)*x<0){if((b-s2)*x<=0){const px=(a-s2)*x<=0?a:s2;R=(px-en)*x/r;ex=k;st=R<-0.01?'sl':R>0.02?'trail':'be';break}}
-        else{if((b-tp)*x>=0){R=CFG.RR;ex=k;st='tp';break}best=x>0?Math.max(best,b):Math.min(best,b);
-          if(!mv&&(best-en)*x>=CFG.BE_USD){if((s2-en)*x<0)s2=en;mv=true}if(mv&&CFG.TRAIL_USD>0){const ts=best-x*CFG.TRAIL_USD;if((ts-s2)*x>0)s2=ts}}}}
-    if(R===null){if(i+96<=M.length-1){ex=i+96;R=(c[ex]-en)*x/r;st='time'}else{ex=M.length-1;R=(c[ex]-en)*x/r;st='open'}}
-    if(st!=='open'&&st!=='be')R-=CFG.SPREAD/r;tr.push({t:M[i].t+900,d:x,en,sl,tp,R,st,exT:M[ex].t+900});busy=ex}
+    const r=X.atrAt(M[i].t);if(!(r>0.3))continue;const en=c[i],sl=en-x*r,tp=en+x*CFG.BE.day;
+    const o=ladderExit(M,i+1,x,en,r,'day');let R=o.R;if(o.st!=='open'&&o.st!=='be')R-=CFG.SPREAD/r;
+    tr.push({t:M[i].t+900,d:x,en,sl,tp,R,st:o.st,exT:M[o.ex].t+900});busy=o.ex}
   return tr;
 }
 
@@ -657,7 +659,7 @@ function compute(){
   if(dir>0&&sr.res[0]&&sr.res[0].p+basis-price<0.6*r)warns.push(`Kháng cự gần ở ${fmt(sr.res[0].p+basis)} (${sr.res[0].src.join(', ')}) — dễ bị chặn trước chốt lời.`);
   if(dir<0&&sr.sup[0]&&price-(sr.sup[0].p+basis)<0.6*r)warns.push(`Hỗ trợ gần ở ${fmt(sr.sup[0].p+basis)} (${sr.sup[0].src.join(', ')}) — dễ bị đỡ trước chốt lời.`);
   const blocked=!!cal.lock;
-  const L=dir?{en:price,sl:price-dir*r,tp1:price+dir*r,tp2:price+dir*r*CFG.RR,risk:r}:{en:price,risk:r};
+  const bm=CFG.BE[S.mode],tm=CFG.TRAIL[S.mode];const dd=dir||m.want||1;const L={en:price,sl:price-dd*r,tp1:price+dd*bm,tp2:price+dd*(tm+5),risk:r,dirShown:dd};
   // USD
   let usdCh=null;if(S.usd.length>=13){const a=S.usd[S.usd.length-13].c,b=S.usd[S.usd.length-1].c;usdCh=(b-a)/a*100}
   const fl=flow(S.m15,m.H);
@@ -669,10 +671,12 @@ function marketState(ms){const d=new Date(ms||Date.now());const wd=d.getUTCDay()
   const open=!((wd===5&&h>=21)||wd===6||(wd===0&&h<22));const s=[];if(h>=23||h<8)s.push('Á');if(h>=7&&h<16)s.push('Âu');if(h>=12&&h<21)s.push('Mỹ');
   return {open,sess:open?(s.join(' + ')||'Chuyển phiên'):'Nghỉ'}}
 function logSignal(){const s=S.sig;if(!s||!s.dir)return;const key=s.mode+'_'+s.crossAt+'_'+s.dir;if(S.log[0]&&S.log[0].key===key)return;
-  S.log.unshift({key,mode:s.mode,at:Date.now(),dir:s.dir,en:s.L.en,sl:s.L.sl,tp1:s.L.tp1,tp2:s.L.tp2,blocked:s.blocked});S.log=S.log.slice(0,50);store.set('log',S.log);
-  if(S.notify&&'Notification' in window&&Notification.permission==='granted'){try{new Notification(`Radar Vàng (${MODES[s.mode].name}): ${s.dir>0?'MUA':'BÁN'} XAU`,{body:`Vào ${fmt(s.L.en)} · SL ${fmt(s.L.sl)} · TP2 ${fmt(s.L.tp2)}${s.blocked?' · Đang vùng tin mạnh, chờ!':''}`})}catch(e){}}
+  S.log.unshift({key,mode:s.mode,at:Date.now(),dir:s.dir,en:s.L.en,sl:s.L.sl,be:s.L.tp1,lot:lotFor(s.L.risk),blocked:s.blocked});S.log=S.log.slice(0,50);store.set('log',S.log);
+  if(S.notify&&'Notification' in window&&Notification.permission==='granted'){try{new Notification(`Srada (${MODES[s.mode].name}): ${s.dir>0?'MUA':'BÁN'} XAU`,{body:`Vào ${fmt(s.L.en)} · SL ${fmt(s.L.sl)} · ${fmt(lotFor(s.L.risk))} lot · lãi ${CFG.BE[s.mode]} giá → SL về điểm vào${s.blocked?' · Đang vùng tin mạnh, chờ!':''}`})}catch(e){}}
   try{const a=new (window.AudioContext||window.webkitAudioContext)();const o=a.createOscillator(),g=a.createGain();o.connect(g);g.connect(a.destination);o.frequency.value=880;g.gain.value=.08;o.start();setTimeout(()=>{o.stop();a.close()},250)}catch(e){}}
 
+// Khối lượng theo % rủi ro (giống EA Srada): lot = vốn × % rủi ro ÷ (khoảng SL × 100)
+function lotFor(r){const want=S.settings.bal*S.settings.risk/100;let lot=Math.floor(want/(r*CFG.OZ_PER_LOT)/0.01+1e-9)*0.01;if(lot<0.01)lot=0.01*CFG.OZ_PER_LOT*r<=want*1.5?0.01:0;return +lot.toFixed(2)}
 // ============ HIỂN THỊ ============
 function render(){
   const mk=marketState();
@@ -700,20 +704,18 @@ function render(){
     $('sigTime').textContent='Nến '+tfN+' '+vnTime((s.t+tfS)*1000);
     $('bias').innerHTML=MD.type==='rsi2'?(s.st4>0?'<span class="ok">▲ Xu hướng H4 TĂNG</span> — chờ nhịp hồi sâu trên M15 để MUA':s.st4<0?'<span class="no">▼ Xu hướng H4 GIẢM</span> — chờ nhịp hồi lên trên M15 để BÁN':'<span class="na">◆ H4 chưa đồng thuận</span> — đứng ngoài'):!MD.h4?(s.up1>0?'<span class="ok">▲ Giá H1 trên EMA200</span> — chỉ tìm cơ hội MUA':'<span class="no">▼ Giá H1 dưới EMA200</span> — chỉ tìm cơ hội BÁN'):s.st4>0?'<span class="ok">▲ Xu hướng H4 TĂNG</span> — chỉ tìm cơ hội MUA':s.st4<0?'<span class="no">▼ Xu hướng H4 GIẢM</span> — chỉ tìm cơ hội BÁN':'<span class="na">◆ H4 chưa đồng thuận</span> — đứng ngoài';
     $('checks').innerHTML=s.checks.map(c=>`<li${c.info?' style="grid-column:1/-1;opacity:.85"':''}><i class="${c.info?'na':c.ok?'ok':'no'}">${c.info?'ℹ':c.ok?'✓':'✗'}</i><span>${c.txt}</span></li>`).join('');
-    $('lvEn').textContent=fmt(s.L.en);$('lvSl').textContent=fmt(s.L.sl);$('lvTp1').textContent=fmt(s.L.tp1);$('lvTp2').textContent=fmt(s.L.tp2);
-    const st_=S.settings,oz=CFG.OZ_PER_LOT,lossU=s.L.risk*st_.lot*oz,rem=Math.max(0,+(st_.lot-st_.part).toFixed(2)),tp1U=s.L.risk*st_.part*oz,tp2U=2*s.L.risk*rem*oz,pctB=lossU/st_.bal*100;
-    const over=lossU>st_.maxRisk;
-    $('lotBox').innerHTML=(s.dir?`<b>${st_.lot} lot</b>: chạm SL <b class="dn">−$${fmt(lossU)}</b> (${pctB.toFixed(1)}% vốn) · TP1 chốt ${st_.part} lot <b class="up">+$${fmt(tp1U)}</b> rồi dời SL về điểm vào · TP2 thêm <b class="up">+$${fmt(tp2U)}</b> (${rem} lot).${S.mode==='day'?` <br>🛡 Lãi ${CFG.BE_USD} giá → dời SL về điểm vào (hết rủi ro), sau đó SL bám cách giá ${CFG.TRAIL_USD}.`:''}`
-      :`Nếu có tín hiệu lúc này với <b>${st_.lot} lot</b>: cắt lỗ cách $${fmt(s.L.risk)} → mất tối đa <b>$${fmt(lossU)}</b> (${pctB.toFixed(1)}% vốn); TP1 +$${fmt(tp1U)}, TP2 thêm +$${fmt(tp2U)}.`)
-      +(over?`<br>⚠ Rủi ro vượt giới hạn $${fmt(st_.maxRisk,0)} anh đặt — ${s.dir?'<b>khuyên BỎ QUA lệnh này</b>':'nếu có tín hiệu sẽ khuyên bỏ qua'}.`:'')
-      +(pctB>3&&!over?`<br><span class="skel" style="font-size:12px">Lưu ý: rủi ro trên 3% vốn — hợp với tài khoản demo; tiền thật nên giảm còn 0.01 lot.</span>`:'');
+    $('lvEn').textContent=fmt(s.L.en);$('lvSl').textContent=fmt(s.L.sl);$('lvTp1').textContent=fmt(s.L.tp1);$('lvTp2').textContent=fmt(s.L.tp2);$('lvTp1Lbl').textContent=`SL về điểm vào khi lãi ${CFG.BE[s.mode]} giá`;$('lvTp2Lbl').textContent=`SL khoá +5 giá khi lãi ${CFG.TRAIL[s.mode]+5} giá`;
+    const st_=S.settings,lot=lotFor(s.L.risk),lossU=s.L.risk*Math.max(lot,0.01)*CFG.OZ_PER_LOT,pctB=lossU/st_.bal*100,bm=CFG.BE[s.mode],tm=CFG.TRAIL[s.mode];
+    $('lotBox').innerHTML=(lot?`${s.dir?'':'Nếu có tín hiệu lúc này: '}<b>${fmt(lot)} lot</b> (vốn $${fmt(st_.bal,0)}, rủi ro ${st_.risk}%/lệnh) · chạm SL <b class="dn">−$${fmt(lossU)}</b> (${pctB.toFixed(2)}% vốn, SL cách ${fmt(s.L.risk)} giá).`
+      :`SL cách ${fmt(s.L.risk)} giá — quá xa, lot nhỏ nhất 0.01 đã vượt mức rủi ro ${st_.risk}%: <b>Srada sẽ bỏ qua lệnh này</b>.`)
+      +`<br>🪜 Lãi <b>${bm} giá</b> (≈ +$${fmt(bm*lot*CFG.OZ_PER_LOT,0)}) → SL về điểm vào, hết rủi ro. Sau đó giá có lợi thêm 1 giá → SL dời thêm 1 giá (SL luôn cách giá tốt nhất ${tm} giá). Không đặt TP — để SL tự chốt lời, tối đa 24 giờ.`;
     const rs=s.warns.map(w=>`<li><span class="tag w">!</span><span style="color:#f3d19a">${w}</span></li>`);
     rs.push(`<li><span class="tag ${s.rsi>70?'n':s.rsi<30?'p':'z'}">RSI</span><span>RSI H1 = ${s.rsi.toFixed(0)}${s.rsi>70?' — quá mua, dễ điều chỉnh ngắn':s.rsi<30?' — quá bán, dễ hồi ngắn':''}</span></li>`);
     $('reasons').innerHTML=rs.join('');
     renderSR(s);renderFlow(s);renderOverview(s);try{renderAuction()}catch(e){console.warn('auction',e)}
   }
   renderCOT();renderCal();renderNews();renderBT();renderDays();renderSim();
-  if(S.log.length)$('log').innerHTML=S.log.slice(0,20).map(l=>`<li><span class="${l.dir>0?'up':'dn'}">${l.dir>0?'MUA ':'BÁN '}</span>${vnTime(l.at,true)} · vào ${fmt(l.en)} · SL ${fmt(l.sl)} · TP2 ${fmt(l.tp2)}${l.blocked?' · (vùng tin)':''}</li>`).join('');
+  if(S.log.length)$('log').innerHTML=S.log.slice(0,20).map(l=>`<li><span class="${l.dir>0?'up':'dn'}">${l.dir>0?'MUA ':'BÁN '}</span>[${MODES[l.mode]?.name||''}] ${vnTime(l.at,true)} · vào ${fmt(l.en)} · SL ${fmt(l.sl)}${l.lot?` · ${fmt(l.lot)} lot`:''}${l.blocked?' · (vùng tin)':''}</li>`).join('');
   drawChart();
 }
 function stars(w){const n=w>=4?3:w>=2.2?2:1;return '●'.repeat(n)+'○'.repeat(3-n)}
@@ -793,13 +795,13 @@ function renderBT(){
   $('eq').innerHTML=`<line x1="0" x2="300" y1="${zy}" y2="${zy}" stroke="#332c20" stroke-dasharray="3 3"/><polyline points="${pts}" fill="none" stroke="#e6b450" stroke-width="1.6" vector-effect="non-scaling-stroke"/>`;
   const yrs=Object.entries(f.yrs).map(([y,v])=>`${y}: <b class="${v>=0?'up':'dn'}">${v>=0?'+':''}${v}R</b>`).join(' · ');
   const rc=(S.recent||[]).filter(t=>t.st!=='open');const rt=rc.reduce((a,t)=>a+t.R,0);
-  $('btNote').innerHTML=`<b>Chế độ ${MODES[S.mode].name}.</b> Đường vốn tính theo R (1R = số tiền rủi ro mỗi lệnh). Từng năm: ${yrs}. Sụt giảm lớn nhất ${f.dd}R. Dữ liệu 2025–2026: +${oos.exp}R/lệnh.`+
+  $('btNote').innerHTML=`<div class="infobox" style="margin:0 0 8px"><b>★ Srada — SL bậc thang (kiểm chứng 07/2025–10/2026 trên nến M5):</b> 696 lệnh · 61% có lãi · <b class="up">+0,15R/lệnh</b> (TUẦN +0,19R · NGÀY +0,15R) · sụt vốn lớn nhất 8,3R · 14/16 tháng có lãi. Cách cũ (TP1 1R + TP2 2R) cùng giai đoạn: +0,12R/lệnh, sụt 18,2R. Thi thử FTMO 12 lượt: qua cả 12.</div><b>Chế độ ${MODES[S.mode].name} (cách thoát lệnh cũ, 4,5 năm).</b> Đường vốn tính theo R (1R = số tiền rủi ro mỗi lệnh). Từng năm: ${yrs}. Sụt giảm lớn nhất ${f.dd}R. Dữ liệu 2025–2026: +${oos.exp}R/lệnh.`+
     (day?`<br>⚠ 2022–2023 gần như hoà vốn, lãi chủ yếu đến từ 2024–2026 khi vàng có xu hướng mạnh — thị trường đi ngang thì chế độ này ít hiệu quả.<br>Tần suất thật: ${B.daily.dist[0]}% số ngày không có lệnh · ${B.daily.dist[1]}% có 1 lệnh · ${(B.daily.dist[2]+B.daily.dist[3]).toFixed(1)}% có 2 lệnh. Ngày có lãi ${B.daily.posDays}% (trong các ngày có lệnh), tháng có lãi ${B.daily.moPos}%. Ngày tệ nhất ${B.daily.worstDay}R.`:'')+
     (rc.length?`<br>~2 tháng gần nhất (tính trực tiếp trên dữ liệu đang tải): <b>${rc.length}</b> lệnh đã đóng, tổng <b class="${rt>=0?'up':'dn'}">${rt>=0?'+':''}${rt.toFixed(1)}R</b>.`:'');
   const names=Object.keys(B.tab);const tfs=['M15','H1','H4'];
   const cell=v=>`<td style="color:${v[3]>=0.05?'var(--buy)':v[3]>0?'#9fd9b6':'var(--sell)'}">${v[3]>0?'+':''}${v[3].toFixed(2)}</td>`;
   const rows=names.sort((a,b)=>(B.tab[b].H4[3]+B.tab[b].H1[3])-(B.tab[a].H4[3]+B.tab[a].H1[3])).map(n=>`<tr><td>${n}</td>${tfs.map(t=>cell(B.tab[n][t])).join('')}<td>${B.tab[n].H1[4]}</td></tr>`).join('');
-  $('btTable').innerHTML=`<tr><th>Chỉ báo</th><th>M15</th><th>H1</th><th>H4</th><th>Năm có lãi (H1)</th></tr>${rows}<tr class="best"><td><b>★ Radar chế độ TUẦN (H1 + H4)</b></td><td>—</td><td style="color:var(--buy)">+${B.final.exp}</td><td>—</td><td>${B.final.posYrs}</td></tr><tr class="best"><td><b>★ Radar chế độ NGÀY (RSI(2) M15 theo H4)</b></td><td style="color:var(--buy)">+${B.daily.exp}</td><td>—</td><td>—</td><td>${B.daily.posYrs}</td></tr>`;
+  $('btTable').innerHTML=`<tr><th>Chỉ báo</th><th>M15</th><th>H1</th><th>H4</th><th>Năm có lãi (H1)</th></tr>${rows}<tr class="best"><td><b>★ Srada TUẦN (H1 + H4)</b></td><td>—</td><td style="color:var(--buy)">+${B.final.exp}</td><td>—</td><td>${B.final.posYrs}</td></tr><tr class="best"><td><b>★ Srada NGÀY (RSI(2) M15 theo H4)</b></td><td style="color:var(--buy)">+${B.daily.exp}</td><td>—</td><td>—</td><td>${B.daily.posYrs}</td></tr>`;
 }
 // Kết quả theo ngày (giờ Việt Nam)
 function renderDays(){
@@ -808,16 +810,16 @@ function renderDays(){
   const by=new Map();for(const t of tr){const k=dk(t.t);if(!by.has(k))by.set(k,[]);by.get(k).push(t)}
   // liệt kê cả ngày không có lệnh (ngày giao dịch)
   const days=[];const last=Date.now();for(let d=0;d<30;d++){const ms=last-d*864e5;const k=new Date(ms).toLocaleDateString('en-CA',{timeZone:TZ});const wd=new Date(k+'T12:00:00Z').getUTCDay();if(wd===0||(wd===6&&!by.has(k)))continue;days.push(k)}
-  const chip=t=>{const cls=t.st==='tp'||t.st==='trail'?'w':t.st==='sl'?'l':t.st==='open'?'o':t.st==='be'?'e':t.R>=0?'w':'l';const ic=t.st==='tp'?'✓':t.st==='trail'?'🔒':t.st==='be'?'🤝':t.st==='sl'?'✗':t.st==='open'?'⏳':'⌛';
-    return `<span class="chip ${cls}" title="Vào ${fmt(t.en)} · SL ${fmt(t.sl)} · TP ${fmt(t.tp)}">${ic} ${t.d>0?'MUA':'BÁN'} ${vnTime(t.t*1000)} ${t.R>=0?'+':''}${t.R.toFixed(1)}R</span>`};
+  const chip=t=>{const cls=t.st==='tp'||t.st==='trail'||(t.st==='time'&&t.R>0)?'w':t.st==='sl'?'l':t.st==='open'?'o':t.st==='be'?'e':t.R>=0?'w':'l';const ic=t.st==='tp'?'✓':t.st==='trail'?'🔒':t.st==='be'?'🤝':t.st==='sl'?'✗':t.st==='open'?'⏳':'⌛';
+    return `<span class="chip ${cls}" title="Vào ${fmt(t.en)} · SL ${fmt(t.sl)} · về điểm vào khi tới ${fmt(t.tp)}">${ic} ${t.d>0?'MUA':'BÁN'} ${vnTime(t.t*1000)} ${t.R>=0?'+':''}${t.R.toFixed(1)}R</span>`};
   let sumR=0,nT=0,posD=0,actD=0;
   const rows=days.map(k=>{const L=by.get(k)||[];const closed=L.filter(t=>t.st!=='open');const r=closed.reduce((a,t)=>a+t.R,0);
     if(closed.length){actD++;if(r>0)posD++;sumR+=r;nT+=closed.length}
     const [y,m,d]=k.split('-');const wd=['CN','T2','T3','T4','T5','T6','T7'][new Date(k+'T12:00:00Z').getUTCDay()];
     return `<tr><td style="white-space:nowrap">${wd} ${d}/${m}</td><td>${L.length?L.map(chip).join(''):'<span class="skel" style="font-size:12px">Không có tín hiệu</span>'}</td><td class="r ${r>0?'up':r<0?'dn':''}">${closed.length?(r>=0?'+':'')+r.toFixed(1)+'R':L.length?'…':'—'}</td></tr>`}).join('');
   $('daysTbl').innerHTML=`<tr><th>Ngày</th><th>Lệnh &amp; kết quả</th><th style="text-align:right">Tổng</th></tr>${rows}`;
-  const riskUsd=S.sig?S.sig.L.risk*S.settings.lot*CFG.OZ_PER_LOT:0;
-  $('daysSum').innerHTML=`<div><span>Tổng 30 ngày</span><b class="${sumR>=0?'up':'dn'}">${sumR>=0?'+':''}${sumR.toFixed(1)}R</b><em>≈ ${sumR>=0?'+':'−'}$${fmt(Math.abs(sumR*riskUsd),0)} với ${S.settings.lot} lot (ước tính)</em></div>
+  const riskUsd=S.settings.bal*S.settings.risk/100;
+  $('daysSum').innerHTML=`<div><span>Tổng 30 ngày</span><b class="${sumR>=0?'up':'dn'}">${sumR>=0?'+':''}${sumR.toFixed(1)}R</b><em>≈ ${sumR>=0?'+':'−'}$${fmt(Math.abs(sumR*riskUsd),0)} với rủi ro ${S.settings.risk}%/lệnh trên $${fmt(S.settings.bal,0)} (ước tính)</em></div>
    <div><span>Số lệnh đã đóng</span><b>${nT}</b><em>${actD} ngày có lệnh</em></div>
    <div><span>Ngày có lãi</span><b>${actD?Math.round(posD/actD*100):0}%</b><em>${posD}/${actD} ngày</em></div>`;
   $('daysNote').textContent='Chế độ '+MODES[S.mode].name+' · 30 ngày gần nhất';
@@ -861,7 +863,7 @@ function simulate(hours,evScen,geoScen){
         L+=mu+sd*z[Math.floor(rnd()*z.length)]}
       const P=Math.exp(L);paths[n*T+k]=P;
       if(res&&P>=res)hitR=true;if(sup&&P<=sup)hitS=true;
-      if(s.dir&&!dec){if(s.dir>0?P>=s.L.tp2:P<=s.L.tp2)dec=1;else if(s.dir>0?P<=s.L.sl:P>=s.L.sl)dec=-1}}
+      if(s.dir&&!dec){if(s.dir>0?P>=s.L.tp1:P<=s.L.tp1)dec=1;else if(s.dir>0?P<=s.L.sl:P>=s.L.sl)dec=-1}}
     if(hitR)tRes++;if(hitS)tSup++;if(dec>0)tpFirst++;if(dec<0)slFirst++}
   const q=[0.05,0.25,0.5,0.75,0.95];const band=q.map(()=>new Float64Array(T));const col=new Float32Array(N);
   for(let k=0;k<T;k++){for(let n=0;n<N;n++)col[n]=paths[n*T+k];col.sort();q.forEach((qq,i)=>band[i][k]=col[Math.min(N-1,Math.floor(qq*N))])}
@@ -898,7 +900,7 @@ function renderSim(){
     `<div><span>Trung vị · khả năng cao hơn</span><b>${fmt(r.band[2][T],0)}</b><em>${pct(r.pUp)} số đường đi kết thúc cao hơn giá hiện tại</em></div>`,
     r.res?`<div><span>Chạm kháng cự ${fmt(r.res,0)}</span><b class="dn">${pct(r.pRes)}</b><em>trong ${r.hours} giờ giao dịch</em></div>`:'',
     r.sup?`<div><span>Chạm hỗ trợ ${fmt(r.sup,0)}</span><b class="up">${pct(r.pSup)}</b><em>trong ${r.hours} giờ giao dịch</em></div>`:''];
-  if(r.pTP!=null)st.push(`<div style="grid-column:1/-1"><span>Lệnh đang có tín hiệu (${S.sig.dir>0?'MUA':'BÁN'})</span><b>${pct(r.pTP)} chạm TP2 trước · ${pct(r.pSL)} chạm cắt lỗ trước</b><em>phần còn lại chưa chạm mốc nào trong kỳ</em></div>`);
+  if(r.pTP!=null)st.push(`<div style="grid-column:1/-1"><span>Lệnh đang có tín hiệu (${S.sig.dir>0?'MUA':'BÁN'})</span><b>${pct(r.pTP)} chạm mốc hết rủi ro (+${CFG.BE[S.mode]} giá) trước · ${pct(r.pSL)} chạm cắt lỗ trước</b><em>phần còn lại chưa chạm mốc nào trong kỳ</em></div>`);
   $('simStats').innerHTML=st.join('');
   const evTxt=[...seen].length?r.evs.filter(e=>e.imp==='H').filter((e,i,a)=>a.findIndex(x=>Math.floor(x.t/3600e3)===Math.floor(e.t/3600e3))===i).map(e=>`<b>${esc(evInfo(e.title).vi)}</b> ${vnDay(e.t)} ${vnTime(e.t)} (biến động giờ công bố ×${String(evMult(e.title).toFixed(1)).replace('.',',')} ≈ ±$${fmt(r.sigH*BT_RESULTS.sim.prof[new Date(e.t).getUTCHours()]*evMult(e.title),0)} mỗi 1σ)`).join('; '):'Không có tin Mỹ mạnh trong kỳ mô phỏng';
   const ev=+$('simEv').value,geo=+$('simGeo').value;
@@ -911,30 +913,36 @@ function renderSim(){
 
 // ============ NHẬT KÝ 24/7 (máy chủ GitHub ghi lại và kiểm chứng từng tín hiệu) ============
 async function loadJournal(){
-  const url=S.settings.logUrl||'data/signals.json';
+  const url=S.settings.logUrl||'data/srada.json';
   try{S.journal=await getJSON(url+(url.includes('?')?'&':'?')+'t='+Math.floor(Date.now()/6e4));S.jErr=null}catch(e){S.jErr=e.message}
 }
 function renderJournal(){
   const J=S.journal;
-  if(!J){$('jBody').innerHTML=`<div class="infobox" style="margin-top:0">Chưa kết nối được nhật ký 24/7${S.jErr?` (${esc(S.jErr)})`:''}. Khi radar chạy trên GitHub, mọi tín hiệu sẽ được lưu và kiểm chứng tự động ở đây. Nếu anh mở file này trên máy, hãy dán link nhật ký vào ô "Link nhật ký 24/7" trong phần Quản lý vốn.</div>`;$('jNote').textContent='chưa kết nối';return}
-  const sig=(J.signals||[]).slice().reverse();const st=J.stats||{n:0};const cfg=J.config||{};const sw=J.statsWeek,sd=J.statsDay;
+  if(!J){$('jBody').innerHTML=`<div class="infobox" style="margin-top:0">Chưa kết nối được nhật ký Srada${S.jErr?` (${esc(S.jErr)})`:''}. Khi Srada chạy trên GitHub, mọi tín hiệu và tài khoản thi thử được lưu và cập nhật tự động ở đây. Nếu anh mở file này trên máy, hãy dán link nhật ký vào ô "Link nhật ký 24/7" trong phần Quản lý vốn.</div>`;$('jNote').textContent='chưa kết nối';return}
+  const sig=(J.signals||[]).slice().reverse();const st=J.stats||{n:0};const cfg=J.config||{};const sw=J.statsWeek,sd=J.statsDay;const A=J.acct||{};
+  const acc=cfg.ACCOUNT||10000,rk=(cfg.RISK_PCT&&cfg.RISK_PCT.day)||0.75,be=cfg.BE_USD||CFG.BE,trl=cfg.TRAIL_USD||CFG.TRAIL;
   const ago=J.updatedAt?Date.now()-J.updatedAt:null;const alive=ago!=null&&ago<26*36e5;
   $('jNote').innerHTML=`<span class="live"><span class="dot" style="background:${alive?'var(--buy)':'var(--sell)'};margin:0"></span>${alive?'Máy chủ đang chạy':'Máy chủ chưa chạy'}${J.updatedAt?' · ghi lúc '+vnTime(J.updatedAt,true):''}</span>`;
-  const bal=st.balance??(cfg.startBalance||1000),pnl=st.usd||0;
+  const bal=A.bal??acc,g=(bal-acc)/acc*100,tgt=A.phase===1?10:A.phase===2?5:null,phase=A.phase===1?'Vòng 1':A.phase===2?'Vòng 2':A.phase?'Đã cấp vốn':'Vòng 1';
+  const prog=tgt?Math.max(0,Math.min(100,g/tgt*100)):0;
+  const dayLoss=Math.max(0,(A.dayStart??bal)-bal);
   const sum=`<div class="jst">
-    <div><span>Số dư demo</span><b class="${pnl>=0?'up':'dn'}">$${fmt(bal)}</b><em>${pnl>=0?'+':'−'}$${fmt(Math.abs(pnl))} từ $${fmt(cfg.startBalance||1000,0)}</em></div>
-    <div><span>Lệnh đã đóng</span><b>${st.n||0}</b><em>${sig.filter(x=>x.status!=='closed').length} đang mở</em></div>
-    <div><span>Thắng / Thua / Hoà</span><b style="white-space:nowrap"><i class="up" style="font-style:normal">${st.win||0}</i> / <i class="dn" style="font-style:normal">${st.loss||0}</i> / ${st.flat||0}</b><em>tỷ lệ thắng ${fmt(st.winRate||0,0)}%</em></div>
-    <div><span>Sụt giảm lớn nhất</span><b class="dn">$${fmt(st.dd||0)}</b><em>chuỗi thua dài nhất ${st.maxStreak||0}</em></div></div>`;
+    <div><span>Tài khoản thi · ${phase}${A.attempt>1?` (lần ${A.attempt})`:''}</span><b class="${g>=0?'up':'dn'}">$${fmt(bal)}</b><em>${g>=0?'+':''}${g.toFixed(2)}%${tgt?` / mục tiêu +${tgt}%`:''}</em></div>
+    <div><span>Lỗ hôm nay</span><b class="${dayLoss>0?'dn':''}">$${fmt(dayLoss)}</b><em>Srada dừng ở $${fmt(acc*0.035,0)} · luật $${fmt(acc*0.05,0)}</em></div>
+    <div><span>Ngày giao dịch</span><b>${(A.days||[]).length}/4</b><em>đáy luật quỹ $${fmt(acc*0.9,0)}</em></div>
+    <div><span>Thắng / Thua / Hoà</span><b style="white-space:nowrap"><i class="up" style="font-style:normal">${st.win||0}</i> / <i class="dn" style="font-style:normal">${st.loss||0}</i> / ${st.flat||0}</b><em>${st.n||0} lệnh · TB ${st.avgR>=0?'+':''}${st.avgR||0}R</em></div></div>`
+    +(tgt?`<div class="jbar" title="Tiến độ mục tiêu"><i style="width:${prog}%;background:#e6b450"></i></div><div class="skel" style="font-size:11.5px;margin:-2px 0 8px">Tiến độ ${phase}: ${prog.toFixed(0)}% chặng đường${A.dayLocked?' · <b class="dn">🛑 hôm nay đã dừng vào lệnh</b>':''}${A.maxLocked?' · <b class="dn">⛔ đã dừng hẳn</b>':''}</div>`:'')
+    +((A.history||[]).length?`<div class="skel" style="font-size:11.5px;margin-bottom:6px">Lịch sử thi: ${(A.history||[]).map(h=>`Vòng ${h.phase} ${h.result==='qua'?'<b class="up">qua</b>':'<b class="dn">rớt</b>'} (${vnTime(h.at,true)})`).join(' · ')}</div>`:'');
   const n=st.n||0,seg=(k,c)=>n?`<i style="width:${(st[k]||0)/n*100}%;background:${c}" title="${k}"></i>`:'';
   const pm=(nm,z)=>z&&z.n?`<b>[${nm}]</b> ${z.n} lệnh · ${fmt(z.winRate,0)}% thắng · <span class="${z.usd>=0?'up':'dn'}">${z.usd>=0?'+':'−'}$${fmt(Math.abs(z.usd))}</span>`:`<b>[${nm}]</b> chưa có lệnh đóng`;
-  const per=(sw||sd)?`<div class="skel" style="font-size:12px;margin-bottom:6px">${pm('TUẦN',sw)} &nbsp;·&nbsp; ${pm('NGÀY',sd)} <span style="opacity:.8">(kỳ vọng: TUẦN ~55%, NGÀY ~54% lệnh có lãi)</span></div>`:'';
-  const bar=n?`<div class="skel" style="font-size:11.5px">TP2 <b class="up">${st.tp2||0}</b> · chốt lãi bằng SL bám giá <b class="up">${st.trail||0}</b> · hoà vốn <b style="color:#9fd9b6">${st.be||0}</b> · hết 24 giờ <b>${st.time||0}</b> · chạm SL <b class="dn">${st.sl||0}</b></div><div class="jbar">${seg('tp2','#2fbf71')}${seg('trail','#5fcf95')}${seg('be','#9fd9b6')}${seg('time','#8a8fa3')}${seg('sl','#ef5350')}</div>`:'';
-  const nm={tp2:'✓ TP2',trail:'🔒 chốt lãi',be:'🤝 hoà vốn',sl:'✗ SL',time:'⌛ hết giờ'};
-  const rows=sig.slice(0,40).map(x=>{const b=x.basis||0;const res=x.status==='closed'?`<span class="chip ${x.usd>0?'w':x.usd<0?'l':'e'}">${x.outcome==='be'&&x.tp1Hit?'✓ TP1 + hoà':nm[x.outcome]} ${x.usd>=0?'+':'−'}$${fmt(Math.abs(x.usd))}</span>`:`<span class="chip o">⏳ ${x.tp1Hit?'đã TP1, chờ TP2':x.beMoved?'🛡 hết rủi ro':'đang chạy'}</span>`;
-    return `<tr><td>#${x.no}<br><span class="skel" style="font-size:11px">${vnTime(x.entryT*1000,true)}</span></td><td><span class="tag ${x.mode==='day'?'g':'z'}">${x.mode==='day'?'NGÀY':'TUẦN'}</span><br><b class="${x.dir>0?'up':'dn'}">${x.dir>0?'MUA':'BÁN'}</b>${x.skipped?'<br><span class="tag w">bỏ qua</span>':''}</td><td class="r">${fmt(x.entry+b)}<br><span class="skel" style="font-size:11px">SL ${fmt(x.sl+b)}${x.status!=='closed'&&x.slNow!=null&&Math.abs(x.slNow-x.sl)>0.01?` → <b style="color:#9fd9b6">${fmt(x.slNow+b)}</b>`:''}</span></td><td class="r">${fmt(x.tp1+b)}<br><span class="skel" style="font-size:11px">${fmt(x.tp2+b)}</span></td><td>${res}</td></tr>`}).join('');
-  $('jBody').innerHTML=sum+per+bar+(rows?`<div style="max-height:320px;overflow:auto"><table class="days"><tr><th>Lệnh</th><th>Chiều</th><th style="text-align:right">Vào / SL</th><th style="text-align:right">TP1 / TP2</th><th>Kết quả</th></tr>${rows}</table></div>`:'<div class="skel">Chưa có tín hiệu nào kể từ khi radar bắt đầu chạy. Mô hình TUẦN trung bình 1–2 lệnh mỗi tuần.</div>')+
-    `<div class="skel" style="font-size:11.5px;margin-top:8px">Kế hoạch cho cả TUẦN và NGÀY: ${cfg.lot||0.02} lot, TP1 chốt ${cfg.partial||0.01} lot rồi dời SL về điểm vào, TP2 = 2R. Riêng NGÀY: lãi ${fmt(cfg.beUSD??CFG.BE_USD,0)} giá là dời SL về điểm vào (không tính lỗ), sau đó SL bám cách giá ${fmt(cfg.trailUSD??CFG.TRAIL_USD,0)}; tối đa ${cfg.maxHoldH||24} giờ, bỏ qua lệnh rủi ro > $${cfg.maxRiskUSD||80}. Lệnh "bỏ qua" vẫn được theo dõi nhưng không tính vào số dư. Đã trừ spread ước tính.</div>`;
+  const per=`<div class="skel" style="font-size:12px;margin-bottom:6px">${pm('TUẦN',sw)} &nbsp;·&nbsp; ${pm('NGÀY',sd)} <span style="opacity:.8">(kiểm chứng: ~61% lệnh có lãi)</span></div>`;
+  const bar=n?`<div class="skel" style="font-size:11.5px">chốt lãi bằng SL bậc thang <b class="up">${st.trail||0}</b> · hoà vốn <b style="color:#9fd9b6">${st.be||0}</b> · hết 24 giờ <b>${st.time||0}</b> · chạm SL <b class="dn">${st.sl||0}</b></div><div class="jbar">${seg('trail','#2fbf71')}${seg('tp2','#5fcf95')}${seg('be','#9fd9b6')}${seg('time','#8a8fa3')}${seg('sl','#ef5350')}</div>`:'';
+  const nm={tp2:'✓ TP',trail:'🔒 chốt lãi',be:'🤝 hoà vốn',sl:'✗ SL',time:'⌛ hết giờ'};
+  const rows=sig.slice(0,40).map(x=>{const b=x.basis||0;const lk=x.slNow!=null?(x.slNow-x.entry)*x.dir:null;
+    const res=x.status==='closed'?`<span class="chip ${x.usd>0?'w':x.usd<0?'l':'e'}">${nm[x.outcome]||x.outcome} ${x.usd>=0?'+':'−'}$${fmt(Math.abs(x.usd))}</span>`:`<span class="chip o">⏳ ${lk!=null&&lk>0.01?`🪜 khoá +${fmt(lk,0)} giá`:x.beMoved?'🛡 hết rủi ro':'đang chạy'}</span>`;
+    return `<tr><td>#${x.no}<br><span class="skel" style="font-size:11px">${vnTime(x.entryT*1000,true)}</span></td><td><span class="tag ${x.mode==='day'?'g':'z'}">${x.mode==='day'?'NGÀY':'TUẦN'}</span><br><b class="${x.dir>0?'up':'dn'}">${x.dir>0?'MUA':'BÁN'}</b>${x.skipped?'<br><span class="tag w">không vào</span>':''}</td><td class="r">${fmt(x.entry+b)}<br><span class="skel" style="font-size:11px">SL ${fmt(x.sl+b)}${x.status!=='closed'&&x.slNow!=null&&Math.abs(x.slNow-x.sl)>0.01?` → <b style="color:#9fd9b6">${fmt(x.slNow+b)}</b>`:''}</span></td><td class="r">${fmt(x.lot)} lot<br><span class="skel" style="font-size:11px">rủi ro $${fmt(x.riskUSD,0)}</span></td><td>${res}</td></tr>`}).join('');
+  $('jBody').innerHTML=sum+per+bar+(rows?`<div style="max-height:320px;overflow:auto"><table class="days"><tr><th>Lệnh</th><th>Chiều</th><th style="text-align:right">Vào / SL</th><th style="text-align:right">Khối lượng</th><th>Kết quả</th></tr>${rows}</table></div>`:'<div class="skel">Chưa có tín hiệu nào kể từ khi Srada bắt đầu chạy. Trung bình TUẦN 1–2 lệnh/tuần, NGÀY khoảng 1 lệnh/ngày.</div>')+
+    `<div class="skel" style="font-size:11.5px;margin-top:8px">Cách trade Srada: tài khoản $${fmt(acc,0)}, rủi ro ${rk}% mỗi lệnh (lot tự tính theo khoảng SL). NGÀY: lãi ${be.day??5} giá → SL về điểm vào, sau đó SL luôn cách giá tốt nhất ${trl.day??5} giá. TUẦN: lãi ${be.week??10} giá → SL về điểm vào, sau đó SL luôn cách giá tốt nhất ${trl.week??10} giá. SL nhảy từng 1 giá, không TP cố định, tối đa 24 giờ. Tự dừng trong ngày khi lỗ 3,5% (luật quỹ 5%), dừng hẳn ở 8% (luật 10%). Lệnh "không vào" vẫn theo dõi nhưng không tính vào số dư. Đã trừ spread ước tính.</div>`;
 }
 
 // ============ BẢN ĐỒ ĐẤU GIÁ (Market Profile theo thời gian – TPO) — CHỈ ĐỂ THAM KHẢO ============
@@ -1007,16 +1015,16 @@ function drawChart(){if(!chart)return;
   s.sr.res.slice(0,3).forEach(l=>pl(l.p+b,'#8a6f6f','KC',3));s.sr.sup.slice(0,3).forEach(l=>pl(l.p+b,'#6f8a78','HT',3));
   if(s.sr.vp)pl(s.sr.vp.poc+b,'#e6b450','POC',1);
   try{const A=auction();if(A){pl(A.P.vah+b,'#8fb3d9','VAH hq',1);pl(A.P.val+b,'#8fb3d9','VAL hq',1)}}catch(e){}
-  if(s.dir){pl(s.L.sl,'#ef5350','SL');pl(s.L.tp1,'#2fbf71','TP1');pl(s.L.tp2,'#2fbf71','TP2')}}
+  if(s.dir){pl(s.L.sl,'#ef5350','SL');pl(s.L.tp1,'#9fd9b6','Về entry');pl(s.L.tp2,'#2fbf71','Khoá +5')}}
 
 // ============ VÒNG LẶP ============
 async function refreshAll(){$('upd').textContent='đang tải…';
   await Promise.allSettled([loadSpot(),loadCandles(),loadNews(),loadCalendar(),loadCOT(),loadJournal()]);compute();render();renderJournal()}
 function init(){
   const cn=store.get('news',null);if(cn)Object.assign(S,cn);
-  const setF=[['inBal','bal'],['inLot','lot'],['inPart','part'],['inMax','maxRisk'],['inLog','logUrl']];
+  const setF=[['inBal','bal'],['inRisk','risk'],['inLog','logUrl']];
   setF.forEach(([id,k])=>{$(id).value=S.settings[k];$(id).addEventListener('change',()=>{
-    S.settings={bal:Math.max(10,+$('inBal').value||1000),lot:Math.max(0.01,+$('inLot').value||0.02),part:clamp(+$('inPart').value||0,0,+$('inLot').value||0.02),maxRisk:Math.max(5,+$('inMax').value||80),logUrl:$('inLog').value.trim()};
+    S.settings={bal:Math.max(100,+$('inBal').value||10000),risk:clamp(+$('inRisk').value||0.75,0.1,3),logUrl:$('inLog').value.trim()};
     store.set('settings',S.settings);if(k==='logUrl')loadJournal().then(renderJournal);render()})});
   document.querySelectorAll('.tf button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tf button').forEach(x=>x.classList.remove('on'));b.classList.add('on');S.tf=+b.dataset.tf;drawChart()});
   $('btnRefresh').onclick=()=>{loadCalendar(true);refreshAll()};
