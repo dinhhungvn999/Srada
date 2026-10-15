@@ -1,0 +1,154 @@
+{
+ "version": 1,
+ "signals": [],
+ "startedAt": 1792064932162,
+ "acct": {
+  "attempt": 1,
+  "phase": 1,
+  "bal": 10000,
+  "peak": 10000,
+  "days": [],
+  "dayKey": "2026-10-15",
+  "dayStart": 10000,
+  "dayLocked": false,
+  "maxLocked": false,
+  "phaseStartAt": 1792064932162,
+  "history": []
+ },
+ "config": {
+  "ACCOUNT": 10000,
+  "RISK_PCT": {
+   "week": 0.75,
+   "day": 0.75
+  },
+  "MAX_OPEN_RISK_PCT": 1.5,
+  "DAY_GUARD_PCT": 3.5,
+  "MAX_GUARD_PCT": 8,
+  "RULE_DAY_PCT": 5,
+  "RULE_MAX_PCT": 10,
+  "TARGET_PCT": {
+   "1": 10,
+   "2": 5
+  },
+  "TARGET_BUFFER_PCT": 0.3,
+  "MIN_DAYS": 4,
+  "TP1_R": 0,
+  "PART_PCT": 50,
+  "TP2_R": 0,
+  "BE_USD": {
+   "day": 5,
+   "week": 10
+  },
+  "TRAIL_USD": {
+   "day": 5,
+   "week": 10
+  },
+  "STEP_USD": 1,
+  "SPREAD": 0.35,
+  "MAX_HOLD_H": 24,
+  "MODES": [
+   "week",
+   "day"
+  ],
+  "LOCK_BEFORE": 30,
+  "WEEKLY_REPORT_DOW": 0,
+  "WEEKLY_REPORT_HOUR_VN": 9
+ },
+ "cal": {
+  "at": 1792064938638,
+  "items": [
+   {
+    "t": 1791981000000,
+    "title": "Core CPI m/m"
+   },
+   {
+    "t": 1791981000000,
+    "title": "Core CPI y/y"
+   },
+   {
+    "t": 1791981000000,
+    "title": "CPI m/m"
+   },
+   {
+    "t": 1791981000000,
+    "title": "CPI y/y"
+   },
+   {
+    "t": 1792067400000,
+    "title": "Core PPI m/m"
+   },
+   {
+    "t": 1792067400000,
+    "title": "Core Retail Sales m/m"
+   },
+   {
+    "t": 1792067400000,
+    "title": "PPI m/m"
+   },
+   {
+    "t": 1792067400000,
+    "title": "Retail Sales m/m"
+   },
+   {
+    "t": 1792121400000,
+    "title": "Fed Chairman Warsh Speaks"
+   }
+  ]
+ },
+ "welcomed": true,
+ "stats": {
+  "n": 0,
+  "win": 0,
+  "loss": 0,
+  "flat": 0,
+  "tp2": 0,
+  "be": 0,
+  "trail": 0,
+  "sl": 0,
+  "time": 0,
+  "winRate": 0,
+  "usd": 0,
+  "avgR": 0,
+  "dd": 0,
+  "maxStreak": 0
+ },
+ "statsWeek": {
+  "n": 0,
+  "win": 0,
+  "loss": 0,
+  "flat": 0,
+  "tp2": 0,
+  "be": 0,
+  "trail": 0,
+  "sl": 0,
+  "time": 0,
+  "winRate": 0,
+  "usd": 0,
+  "avgR": 0,
+  "dd": 0,
+  "maxStreak": 0
+ },
+ "statsDay": {
+  "n": 0,
+  "win": 0,
+  "loss": 0,
+  "flat": 0,
+  "tp2": 0,
+  "be": 0,
+  "trail": 0,
+  "sl": 0,
+  "time": 0,
+  "winRate": 0,
+  "usd": 0,
+  "avgR": 0,
+  "dd": 0,
+  "maxStreak": 0
+ },
+ "last": {
+  "t": 1792058400,
+  "price": 4152.9,
+  "st4": -1
+ },
+ "aliveDay": "2026-10-15",
+ "updatedAt": 1792064940422
+}
