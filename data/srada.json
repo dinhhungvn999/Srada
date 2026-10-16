@@ -8,7 +8,7 @@
   "bal": 10000,
   "peak": 10000,
   "days": [],
-  "dayKey": "2026-10-15",
+  "dayKey": "2026-10-16",
   "dayStart": 10000,
   "dayLocked": false,
   "maxLocked": false,
@@ -55,7 +55,7 @@
   "WEEKLY_REPORT_HOUR_VN": 9
  },
  "cal": {
-  "at": 1792064938638,
+  "at": 1792108838754,
   "items": [
    {
     "t": 1791981000000,
@@ -145,10 +145,10 @@
   "maxStreak": 0
  },
  "last": {
-  "t": 1792058400,
-  "price": 4152.9,
-  "st4": -1
+  "t": 1792105200,
+  "price": 4157.1,
+  "st4": 0
  },
- "aliveDay": "2026-10-15",
- "updatedAt": 1792064940422
+ "aliveDay": "2026-10-16",
+ "updatedAt": 1792108838893
 }
