@@ -8,7 +8,7 @@
   "bal": 10000,
   "peak": 10000,
   "days": [],
-  "dayKey": "2026-10-18",
+  "dayKey": "2026-10-19",
   "dayStart": 10000,
   "dayLocked": false,
   "maxLocked": false,
@@ -55,45 +55,8 @@
   "WEEKLY_REPORT_HOUR_VN": 9
  },
  "cal": {
-  "at": 1792281634730,
-  "items": [
-   {
-    "t": 1791981000000,
-    "title": "Core CPI m/m"
-   },
-   {
-    "t": 1791981000000,
-    "title": "Core CPI y/y"
-   },
-   {
-    "t": 1791981000000,
-    "title": "CPI m/m"
-   },
-   {
-    "t": 1791981000000,
-    "title": "CPI y/y"
-   },
-   {
-    "t": 1792067400000,
-    "title": "Core PPI m/m"
-   },
-   {
-    "t": 1792067400000,
-    "title": "Core Retail Sales m/m"
-   },
-   {
-    "t": 1792067400000,
-    "title": "PPI m/m"
-   },
-   {
-    "t": 1792067400000,
-    "title": "Retail Sales m/m"
-   },
-   {
-    "t": 1792121400000,
-    "title": "Fed Chairman Warsh Speaks"
-   }
-  ]
+  "at": 1792368033245,
+  "items": []
  },
  "welcomed": true,
  "stats": {
@@ -145,11 +108,11 @@
   "maxStreak": 0
  },
  "last": {
-  "t": 1792285200,
-  "price": 4151.88,
-  "st4": -1
+  "t": 1792364400,
+  "price": 4186,
+  "st4": 0
  },
- "aliveDay": "2026-10-18",
- "updatedAt": 1792288832295,
+ "aliveDay": "2026-10-19",
+ "updatedAt": 1792368033281,
  "lastWeekly": 1792288831604
 }
