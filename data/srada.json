@@ -60,19 +60,25 @@
    "riskUSD": 73.21,
    "skipped": false,
    "skipWhy": null,
-   "status": "open",
+   "status": "closed",
    "slNow": 4138.65,
    "best": 4129.83,
-   "worstUSD": -58.68,
-   "floatUSD": -57.96,
-   "openRiskUSD": 73.21
+   "worstUSD": -88.92,
+   "floatUSD": 0,
+   "openRiskUSD": 0,
+   "outcome": "sl",
+   "exitPrice": 4138.654514913387,
+   "exitAt": 1792465823647,
+   "usd": -76.36,
+   "Rm": -1.04,
+   "applied": true
   }
  ],
  "startedAt": 1792064932162,
  "acct": {
   "attempt": 1,
   "phase": 1,
-  "bal": 10005.2,
+  "bal": 9928.84,
   "peak": 10005.2,
   "days": [
    "2026-10-19",
@@ -130,20 +136,20 @@
  },
  "welcomed": true,
  "stats": {
-  "n": 1,
+  "n": 2,
   "win": 1,
-  "loss": 0,
+  "loss": 1,
   "flat": 0,
   "tp2": 0,
   "be": 0,
   "trail": 1,
-  "sl": 0,
+  "sl": 1,
   "time": 0,
-  "winRate": 100,
-  "usd": 5.2,
-  "avgR": 0.07,
-  "dd": 0,
-  "maxStreak": 0
+  "winRate": 50,
+  "usd": -71.16,
+  "avgR": -0.48,
+  "dd": 76.36,
+  "maxStreak": 1
  },
  "statsWeek": {
   "n": 0,
@@ -162,27 +168,27 @@
   "maxStreak": 0
  },
  "statsDay": {
-  "n": 1,
+  "n": 2,
   "win": 1,
-  "loss": 0,
+  "loss": 1,
   "flat": 0,
   "tp2": 0,
   "be": 0,
   "trail": 1,
-  "sl": 0,
+  "sl": 1,
   "time": 0,
-  "winRate": 100,
-  "usd": 5.2,
-  "avgR": 0.07,
-  "dd": 0,
-  "maxStreak": 0
+  "winRate": 50,
+  "usd": -71.16,
+  "avgR": -0.48,
+  "dd": 76.36,
+  "maxStreak": 1
  },
  "last": {
   "t": 1792461600,
-  "price": 4141.8,
+  "price": 4143.2,
   "st4": -1
  },
  "aliveDay": "2026-10-20",
- "updatedAt": 1792465519886,
+ "updatedAt": 1792465824384,
  "lastWeekly": 1792288831604
 }
