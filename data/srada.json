@@ -48,8 +48,8 @@
   "days": [
    "2026-10-19"
   ],
-  "dayKey": "2026-10-19",
-  "dayStart": 10000,
+  "dayKey": "2026-10-20",
+  "dayStart": 10005.2,
   "dayLocked": false,
   "maxLocked": false,
   "phaseStartAt": 1792064932162,
@@ -95,7 +95,7 @@
   "WEEKLY_REPORT_HOUR_VN": 9
  },
  "cal": {
-  "at": 1792442728260,
+  "at": 1792454435297,
   "items": []
  },
  "welcomed": true,
@@ -148,11 +148,11 @@
   "maxStreak": 0
  },
  "last": {
-  "t": 1792440000,
-  "price": 4140.09,
+  "t": 1792450800,
+  "price": 4133.5,
   "st4": -1
  },
- "aliveDay": "2026-10-19",
- "updatedAt": 1792444523775,
+ "aliveDay": "2026-10-20",
+ "updatedAt": 1792454435332,
  "lastWeekly": 1792288831604
 }
