@@ -96,9 +96,9 @@
    "skipWhy": null,
    "status": "open",
    "slNow": 4132.36,
-   "best": 4113.02,
+   "best": 4111.87,
    "worstUSD": -59.8,
-   "floatUSD": 26.45,
+   "floatUSD": 11.9,
    "openRiskUSD": 68.84
   }
  ],
@@ -159,7 +159,7 @@
   "WEEKLY_REPORT_HOUR_VN": 9
  },
  "cal": {
-  "at": 1792476323611,
+  "at": 1792487425141,
   "items": []
  },
  "welcomed": true,
@@ -213,10 +213,10 @@
  },
  "last": {
   "t": 1792483200,
-  "price": 4118.4,
+  "price": 4121.9,
   "st4": -1
  },
  "aliveDay": "2026-10-20",
- "updatedAt": 1792487119154,
+ "updatedAt": 1792487425542,
  "lastWeekly": 1792288831604
 }
