@@ -445,6 +445,34 @@
    "usd": 8.25,
    "Rm": 0.11,
    "applied": true
+  },
+  {
+   "id": "week_1792785600_-1",
+   "no": 13,
+   "mode": "week",
+   "dir": -1,
+   "barT": 1792785600,
+   "entryT": 1792789200,
+   "createdAt": 1792789236509,
+   "lateMin": 1,
+   "entry": 4001.57,
+   "R": 18.18010003294804,
+   "sl": 4019.750100032948,
+   "tp1": null,
+   "tp2": null,
+   "atr": 12.120066688632026,
+   "basis": 0,
+   "lot": 0.04,
+   "partial": 0,
+   "riskUSD": 72.72,
+   "skipped": false,
+   "skipWhy": null,
+   "status": "open",
+   "slNow": 4019.75,
+   "best": 4001.57,
+   "worstUSD": 0,
+   "floatUSD": 0,
+   "openRiskUSD": 72.72
   }
  ],
  "startedAt": 1792064932162,
@@ -507,7 +535,7 @@
   "WEEKLY_REPORT_HOUR_VN": 9
  },
  "cal": {
-  "at": 1792771245187,
+  "at": 1792789236344,
   "items": []
  },
  "welcomed": true,
@@ -560,11 +588,11 @@
   "maxStreak": 2
  },
  "last": {
-  "t": 1792767600,
-  "price": 4003.5,
+  "t": 1792785600,
+  "price": 4001.57,
   "st4": -1
  },
  "aliveDay": "2026-10-23",
- "updatedAt": 1792773925207,
+ "updatedAt": 1792789237132,
  "lastWeekly": 1792288831604
 }
