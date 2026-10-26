@@ -496,7 +496,7 @@
    "2026-10-22",
    "2026-10-23"
   ],
-  "dayKey": "2026-10-25",
+  "dayKey": "2026-10-26",
   "dayStart": 10182.8,
   "dayLocked": false,
   "maxLocked": false,
@@ -543,8 +543,29 @@
   "WEEKLY_REPORT_HOUR_VN": 9
  },
  "cal": {
-  "at": 1792886453647,
-  "items": []
+  "at": 1792972848590,
+  "items": [
+   {
+    "t": 1793210400000,
+    "title": "Federal Funds Rate"
+   },
+   {
+    "t": 1793210400000,
+    "title": "FOMC Statement"
+   },
+   {
+    "t": 1793212200000,
+    "title": "FOMC Press Conference"
+   },
+   {
+    "t": 1793277000000,
+    "title": "Advance GDP q/q"
+   },
+   {
+    "t": 1793277000000,
+    "title": "Core PCE Price Index m/m"
+   }
+  ]
  },
  "welcomed": true,
  "stats": {
@@ -596,11 +617,11 @@
   "maxStreak": 2
  },
  "last": {
-  "t": 1792890000,
-  "price": 3996.57,
-  "st4": -1
+  "t": 1792969200,
+  "price": 3998.5,
+  "st4": 0
  },
- "aliveDay": "2026-10-25",
- "updatedAt": 1792893635516,
+ "aliveDay": "2026-10-26",
+ "updatedAt": 1792972848839,
  "lastWeekly": 1792893635009
 }
