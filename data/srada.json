@@ -911,7 +911,7 @@
    "2026-11-05",
    "2026-11-06"
   ],
-  "dayKey": "2026-11-08",
+  "dayKey": "2026-11-09",
   "dayStart": 10128.95,
   "dayLocked": false,
   "maxLocked": false,
@@ -958,23 +958,23 @@
   "WEEKLY_REPORT_HOUR_VN": 9
  },
  "cal": {
-  "at": 1794096035455,
+  "at": 1794182433402,
   "items": [
    {
-    "t": 1793718960000,
-    "title": "Congressional Elections"
+    "t": 1794317400000,
+    "title": "Core CPI m/m"
    },
    {
-    "t": 1793971800000,
-    "title": "Average Hourly Earnings m/m"
+    "t": 1794317400000,
+    "title": "CPI m/m"
    },
    {
-    "t": 1793971800000,
-    "title": "Non-Farm Employment Change"
+    "t": 1794576600000,
+    "title": "Core PPI m/m"
    },
    {
-    "t": 1793971800000,
-    "title": "Unemployment Rate"
+    "t": 1794576600000,
+    "title": "PPI m/m"
    }
   ]
  },
@@ -1028,11 +1028,11 @@
   "maxStreak": 2
  },
  "last": {
-  "t": 1794099600,
-  "price": 4058.28,
+  "t": 1794178800,
+  "price": 4056.8,
   "st4": -1
  },
- "aliveDay": "2026-11-08",
- "updatedAt": 1794103234698,
+ "aliveDay": "2026-11-09",
+ "updatedAt": 1794182433436,
  "lastWeekly": 1794103233574
 }
