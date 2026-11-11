@@ -1169,7 +1169,7 @@
    "slNow": 3985.33,
    "best": 3975,
    "worstUSD": -18.44,
-   "floatUSD": 96.2,
+   "floatUSD": 99.04,
    "openRiskUSD": 0,
    "beMoved": true,
    "beAt": 1794411900000,
@@ -1202,7 +1202,7 @@
    "slNow": 3992.56,
    "best": 3977.93,
    "worstUSD": -12.53,
-   "floatUSD": 19.04,
+   "floatUSD": 24.01,
    "openRiskUSD": 73.91
   }
  ],
@@ -1348,6 +1348,6 @@
   "st4": -1
  },
  "aliveDay": "2026-11-11",
- "updatedAt": 1794437429901,
+ "updatedAt": 1794437720261,
  "lastWeekly": 1794103233574
 }
