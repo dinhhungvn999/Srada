@@ -1169,7 +1169,7 @@
    "slNow": 3985.33,
    "best": 3975,
    "worstUSD": -18.44,
-   "floatUSD": 99.04,
+   "floatUSD": 100.2,
    "openRiskUSD": 0,
    "beMoved": true,
    "beAt": 1794411900000,
@@ -1202,7 +1202,7 @@
    "slNow": 3992.56,
    "best": 3977.93,
    "worstUSD": -12.53,
-   "floatUSD": 24.01,
+   "floatUSD": 26.04,
    "openRiskUSD": 73.91
   }
  ],
@@ -1226,8 +1226,8 @@
    "2026-11-10",
    "2026-11-11"
   ],
-  "dayKey": "2026-11-11",
-  "dayStart": 9923.36,
+  "dayKey": "2026-11-12",
+  "dayStart": 9941.61,
   "dayLocked": false,
   "maxLocked": false,
   "phaseStartAt": 1792064932162,
@@ -1343,11 +1343,11 @@
   "maxStreak": 2
  },
  "last": {
-  "t": 1794430800,
+  "t": 1794434400,
   "price": 3989,
   "st4": -1
  },
  "aliveDay": "2026-11-11",
- "updatedAt": 1794437720261,
+ "updatedAt": 1794438035496,
  "lastWeekly": 1794103233574
 }
