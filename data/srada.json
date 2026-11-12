@@ -1166,15 +1166,15 @@
    "skipped": false,
    "skipWhy": null,
    "status": "open",
-   "slNow": 3977.33,
-   "best": 3966.38,
+   "slNow": 3971.33,
+   "best": 3960.87,
    "worstUSD": -18.44,
-   "floatUSD": 146.92,
+   "floatUSD": 169.84,
    "openRiskUSD": 0,
    "beMoved": true,
    "beAt": 1794411900000,
-   "lockNotified": 25,
-   "lockNow": 26
+   "lockNotified": 30,
+   "lockNow": 32
   },
   {
    "id": "day_1794434400_-1",
@@ -1199,15 +1199,15 @@
    "skipped": false,
    "skipWhy": null,
    "status": "open",
-   "slNow": 3972,
-   "best": 3966.38,
+   "slNow": 3966,
+   "best": 3960.87,
    "worstUSD": -21.77,
-   "floatUSD": 107.8,
+   "floatUSD": 147.91,
    "openRiskUSD": 0,
    "beMoved": true,
    "beAt": 1794438900000,
-   "lockNotified": 10,
-   "lockNow": 10
+   "lockNotified": 15,
+   "lockNow": 16
   }
  ],
  "startedAt": 1792064932162,
@@ -1277,7 +1277,7 @@
   "WEEKLY_REPORT_HOUR_VN": 9
  },
  "cal": {
-  "at": 1794431137465,
+  "at": 1794442224072,
   "items": [
    {
     "t": 1794317400000,
@@ -1348,10 +1348,10 @@
  },
  "last": {
   "t": 1794438000,
-  "price": 3975.6,
+  "price": 3973.7,
   "st4": -1
  },
  "aliveDay": "2026-11-12",
- "updatedAt": 1794441926090,
+ "updatedAt": 1794442225126,
  "lastWeekly": 1794103233574
 }
