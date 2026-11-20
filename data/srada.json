@@ -1770,8 +1770,8 @@
    "2026-11-18",
    "2026-11-19"
   ],
-  "dayKey": "2026-11-19",
-  "dayStart": 10358.33,
+  "dayKey": "2026-11-20",
+  "dayStart": 10490.61,
   "dayLocked": false,
   "maxLocked": false,
   "phaseStartAt": 1792064932162,
@@ -1887,11 +1887,11 @@
   "maxStreak": 2
  },
  "last": {
-  "t": 1795122000,
-  "price": 3627.9,
+  "t": 1795129200,
+  "price": 3603.5,
   "st4": -1
  },
- "aliveDay": "2026-11-19",
- "updatedAt": 1795126844408,
+ "aliveDay": "2026-11-20",
+ "updatedAt": 1795132838532,
  "lastWeekly": 1794708033222
 }
