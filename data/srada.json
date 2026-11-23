@@ -1841,7 +1841,7 @@
    "2026-11-19",
    "2026-11-20"
   ],
-  "dayKey": "2026-11-22",
+  "dayKey": "2026-11-23",
   "dayStart": 10362.98,
   "dayLocked": false,
   "maxLocked": false,
@@ -1888,23 +1888,15 @@
   "WEEKLY_REPORT_HOUR_VN": 9
  },
  "cal": {
-  "at": 1795305637531,
+  "at": 1795392035306,
   "items": [
    {
-    "t": 1794848400000,
-    "title": "Fed Chairman Warsh Speaks"
+    "t": 1795613400000,
+    "title": "Core PCE Price Index m/m"
    },
    {
-    "t": 1794922200000,
-    "title": "Core Retail Sales m/m"
-   },
-   {
-    "t": 1794922200000,
-    "title": "Retail Sales m/m"
-   },
-   {
-    "t": 1795028400000,
-    "title": "FOMC Meeting Minutes"
+    "t": 1795613400000,
+    "title": "Prelim GDP q/q"
    }
   ]
  },
@@ -1958,11 +1950,11 @@
   "maxStreak": 2
  },
  "last": {
-  "t": 1795309200,
-  "price": 3546.8,
+  "t": 1795388400,
+  "price": 3585,
   "st4": 0
  },
- "aliveDay": "2026-11-22",
- "updatedAt": 1795312837566,
+ "aliveDay": "2026-11-23",
+ "updatedAt": 1795392035342,
  "lastWeekly": 1795312836272
 }
