@@ -1877,8 +1877,8 @@
    "status": "open",
    "slNow": 3539.57,
    "best": 3522.87,
-   "worstUSD": -24,
-   "floatUSD": -24,
+   "worstUSD": -29.96,
+   "floatUSD": -0.76,
    "openRiskUSD": 65.74
   }
  ],
@@ -2018,10 +2018,10 @@
  },
  "last": {
   "t": 1795590000,
-  "price": 3537.5,
+  "price": 3534.7,
   "st4": -1
  },
  "aliveDay": "2026-11-25",
- "updatedAt": 1795596625286,
+ "updatedAt": 1795596919772,
  "lastWeekly": 1795312836272
 }
